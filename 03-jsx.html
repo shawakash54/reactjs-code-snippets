@@ -1,0 +1,39 @@
+<!-- For using jsx, we need babel standalone to transpile the jsx code to js code-->
+<div id="root"></div>
+<!-- Include babel standalone js here -->
+<!-- Include react scripts here -->
+<script type="text/babel">
+    const rootElement = document.getElementById("root");
+    const content = 'Hello World'
+    const className1 = 'container'
+    //const element = <div className="container">Hello World</div>              //way 1
+    //const element = <div className="container">{content}</div>                //way 2
+    const element = <div className={className1}> {(()=>content)()} </div>          //way 3 - inside the curly braces, we can use JS
+
+
+    //way 4
+    const props = {
+        className: 'container',
+        children: 'Hello world'
+    }
+    const element1 = <div {...props} />
+
+
+    //way 5 wrapping up jsx into a function
+    const Message = (props)=> <div>{props.msg}</div>
+    const element = (
+        <div className="container">
+            {Message({msg: 'Hello world'})}
+            {Message({msg: 'Goodbye world'})}
+            
+            {React.createElement(Message, {msg: 'another way'})}
+
+            <Message msg: 'another way'/>
+
+        </div>
+    )
+
+    
+
+    ReactDOM.render(element, rootElement)
+</script>

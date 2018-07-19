@@ -1,0 +1,24 @@
+<script type="text/babel">
+    function Box = ({style, className='', ...rest}){                      //without destructuring, the style property will be overwritten.
+        return (
+            <div className=`box ${className}`>
+                style={{paddingLeft: 20, ...style}}
+                {...rest}
+            />       
+        )
+    }
+
+    const element = (
+        <div>
+            <Box className = "small-box" style={{backgroundColor: 'lightblue'}}>
+                small Box
+            </Box>
+            <Box className = "medium-box" style={{backgroundColor: 'lightgreen'}}>
+                medium Box
+            </Box>
+            <Box className = "large-box" style={{backgroundColor: 'lightred'}}>
+                large Box
+            </Box>
+        </div>
+    )
+</script>   

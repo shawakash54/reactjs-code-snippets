@@ -1,0 +1,44 @@
+<script type="text/babel">
+    function SayHello(props){
+        return(
+            <div>
+                Hello {props.firstName} {props.lastName}!
+            </div>
+        )
+    }
+
+    SayHello.propTypes = {
+        firstName: PropTypes.string,
+        lastName: PropTypes.string
+    }
+
+    const PropTypes = {
+        string(props, propName, componentName){
+            if(typeof props['propName'] !== 'string')
+                return new Error(`Please pass a string for ${propName} in ${componentName} but you passed ${typeof props[propName]}`)x
+        }
+    }
+
+    //there is react implementation of PropTypes. We can include the JS for it and delete our own basic implementation
+    //but for required use like this:
+
+    SayHello.propTypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired
+    }
+    
+
+    //to use in a component
+
+    class SayHello extends React.Component {
+        static propTypes = {                                                //declare it in propTypes
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired
+        }
+
+        render(){
+            const {firstName, lastName} = this.props;
+            return(<div>Hello ${firstName} ${lastName}</div>)
+        } 
+    }
+</script>
